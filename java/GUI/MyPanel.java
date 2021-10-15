@@ -12,20 +12,23 @@ import javax.swing.ImageIcon;
 
 public class MyPanel extends JPanel {
 
+	private final int WIDTH = 453;
+	private final int HEIGHT = 917;
+
 	ImageIcon image;
 	JLabel label;
 
 	MyPanel() {
-		this.setPreferredSize(new Dimension(500, 500));
+		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
 		Graphics2D g2D = (Graphics2D) g;
 
-		for(int i = 0; i < 500; i += 16) {
-			g2D.drawLine(0, i, 500, i);
-			g2D.drawLine(i, 0, i, 500);
-		}
+		for(int i = 0; i < HEIGHT; i += 16)
+			g2D.drawLine(0, i, WIDTH, i);
+		for(int i = 0; i < WIDTH; i += 16)
+			g2D.drawLine(i, 0, i, HEIGHT);
 	}
 }
