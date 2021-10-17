@@ -1,4 +1,4 @@
-package com.main.GUI;
+package com.main;
 
 import javax.swing.JFrame;
 
