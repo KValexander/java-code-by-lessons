@@ -32,12 +32,12 @@ public class TileManager {
 		// Texture array initialization
 		tile = new Tile[10];
 		// Initializing an array of map tiles
-		mapTileNum = new int[panel.maxScreenCol][panel.maxScreenRow];
+		mapTileNum = new int[panel.maxWorldCol][panel.maxWorldRow];
 
 		// Get tile image
 		getTileImage();
 		// Load map
-		loadMap("/maps/map01.txt");
+		loadMap("/maps/world01.txt");
 	}
 
 	// Loading tiles
@@ -71,19 +71,19 @@ public class TileManager {
 			int row = 0;
 
 			// File processing
-			while(col < panel.maxScreenCol && row < panel.maxScreenRow) {
+			while(col < panel.maxWorldCol && row < panel.maxWorldRow) {
 
 				// Retrieving a file line
 				String line = br.readLine();
 
 				// Map processing
-				while(col < panel.maxScreenCol) {
+				while(col < panel.maxWorldCol) {
 					String numbers[] = line.split(" ");
 					int num = Integer.parseInt(numbers[col]);
 					mapTileNum[col][row] = num;
 					col++;
 				}
-				if(col == panel.maxScreenCol) {
+				if(col == panel.maxWorldCol) {
 					col = 0;
 					row++;
 				}
@@ -99,26 +99,34 @@ public class TileManager {
 	public void draw(Graphics2D g2d) {
 
 		// Tile rendering configurations
-		int col = 0;
-		int row = 0;
-		int x = 0;
-		int y = 0;
+		int worldCol = 0;
+		int worldRow = 0;
 
 		// Tiles processing
-		while(col < panel.maxScreenCol && row < panel.maxScreenRow) {
+		while(worldCol < panel.maxWorldCol && worldRow < panel.maxWorldRow) {
 
-			int tileNum = mapTileNum[col][row];
+			int tileNum = mapTileNum[worldCol][worldRow];
 
-			// rendering tile
-			g2d.drawImage(tile[tileNum].image, x, y, panel.tileSize, panel.tileSize, null);
-			col++;
-			x += panel.tileSize;
+			// Camera configuration
+			int worldX = worldCol * panel.tileSize;
+			int worldY = worldRow * panel.tileSize;
+			int screenX = worldX - panel.player.worldX + panel.player.screenX;
+			int screenY = worldY - panel.player.worldY + panel.player.screenY;
 
-			if(col == panel.maxScreenCol) {
-				col = 0;
-				x = 0;
-				row++;
-				y += panel.tileSize;
+			// Border
+			if(worldX + panel.tileSize * 2 > panel.player.worldX - panel.player.screenX &&
+			   worldX - panel.tileSize * 2 < panel.player.worldX + panel.player.screenX &&
+			   worldY + panel.tileSize * 2 > panel.player.worldY - panel.player.screenY &&
+			   worldY - panel.tileSize * 2 < panel.player.worldY + panel.player.screenY) {
+				// Rendering tile
+				g2d.drawImage(tile[tileNum].image, screenX, screenY, panel.tileSize, panel.tileSize, null);
+			}
+
+			worldCol++;
+
+			if(worldCol == panel.maxWorldCol) {
+				worldCol = 0;
+				worldRow++;
 			}
 
 		}

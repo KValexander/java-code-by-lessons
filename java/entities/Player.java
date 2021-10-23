@@ -21,10 +21,17 @@ public class Player extends Entity {
 	MyPanel panel;
 	KeyHandler keyH;
 
+	// Camera size
+	public final int screenX;
+	public final int screenY;
+
 	// Constructor
 	public Player(MyPanel panel, KeyHandler keyH) {
 		this.panel = panel;
 		this.keyH = keyH;
+
+		screenX = panel.screenWidth / 2 - panel.tileSize;
+		screenY = panel.screenHeight / 2 - panel.tileSize;
 
 		// Set default values
 		setDefaultValues();
@@ -34,8 +41,8 @@ public class Player extends Entity {
 
 	// Default values
 	public void setDefaultValues() {
-		x = 100;
-		y = 100;
+		worldX = panel.tileSize * (panel.maxWorldCol / 2) - (panel.tileSize + panel.tileSize / 2);
+		worldY = panel.tileSize * (panel.maxWorldRow / 2) - (panel.tileSize + panel.tileSize / 2);
 		speed = 4;
 		direction = "down";
 	}
@@ -71,19 +78,19 @@ public class Player extends Entity {
 			// Checking keystrokes
 			if(keyH.upPressed == true) {
 				direction = "up";
-				y -= speed;
+				worldY -= speed;
 			}
 			else if(keyH.downPressed == true) {
 				direction = "down";
-				y += speed;
+				worldY += speed;
 			}
 			else if(keyH.leftPressed == true) {
 				direction = "left";
-				x -= speed;
+				worldX -= speed;
 			}
 			else if(keyH.rightPressed == true) {
 				direction = "right";
-				x += speed;
+				worldX += speed;
 			}
 
 			// Sprite selection
@@ -122,7 +129,7 @@ public class Player extends Entity {
 		}
 
 		// Rendering an image
-		g2d.drawImage(image, x, y, panel.tileSize * 2, panel.tileSize * 2, null);
+		g2d.drawImage(image, screenX, screenY, panel.tileSize * 2, panel.tileSize * 2, null);
 
 	}
 

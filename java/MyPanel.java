@@ -18,35 +18,43 @@ public class MyPanel extends JPanel implements Runnable {
 
 	// Screen settings
 	// Private variables
+	// Tile settings
 	private final int origTileSize = 16;
 	private final int scale = 2;
 
 	// Public variables
+	// Map settings
 	public final int tileSize = origTileSize * scale;
 	public final int maxScreenCol = 20;
 	public final int maxScreenRow = 20;
 	public final int screenWidth = tileSize * maxScreenCol;
 	public final int screenHeight = tileSize * maxScreenRow;
 
+	// World map settings
+	public final int maxWorldCol = 50;
+	public final int maxWorldRow = 50;
+	public final int worldWidth = tileSize * maxWorldCol;
+	public final int worldHeight = tileSize * maxWorldRow;
+
 	// FPS
 	public final int FPS = 60;
 
 	// KeyHandler variable
-	KeyHandler keyH = new KeyHandler();
+	private KeyHandler keyH = new KeyHandler();
 
 	// Thread variable
-	Thread myThread;
+	private Thread myThread;
 
 	// Player variable
-	Player player = new Player(this, keyH);
+	public Player player = new Player(this, keyH);
 
 	// TileManager variable
-	TileManager tileM = new TileManager(this);
+	private TileManager tileM = new TileManager(this);
 
 	// Constructor 
 	public MyPanel() {
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-		this.setBackground(Color.pink);
+		this.setBackground(new Color(0x4cb5f5));
 		this.setDoubleBuffered(true);
 
 		// Adding a key handler
@@ -135,12 +143,13 @@ public class MyPanel extends JPanel implements Runnable {
 
 		// Rendering tiles
 		tileM.draw(g2d);
+		
+		// Rendering the grid
+		// drawGrid(g2d);
 
 		// Rendering player data
-		// player.draw(g2d);
+		player.draw(g2d);
 
-		// Rendering the grid
-		drawGrid(g2d);
 
 		// Clear
 		g2d.dispose();
