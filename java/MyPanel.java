@@ -49,7 +49,10 @@ public class MyPanel extends JPanel implements Runnable {
 	public Player player = new Player(this, keyH);
 
 	// TileManager variable
-	private TileManager tileM = new TileManager(this);
+	public TileManager tileM = new TileManager(this);
+
+	// Collision variable
+	public CollisionChecker cChecker = new CollisionChecker(this);
 
 	// Constructor 
 	public MyPanel() {

@@ -9,6 +9,6 @@ public class Tile {
 
 	// Public variables
 	public BufferedImage image;
-	public boolean colision = false;
+	public boolean collision = false;
 
 }

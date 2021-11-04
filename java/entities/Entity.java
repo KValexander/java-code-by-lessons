@@ -1,6 +1,8 @@
 package com.main.entities;
 
 // Import packages
+// awt
+import java.awt.Rectangle;
 // awt image
 import java.awt.image.BufferedImage;
 
@@ -18,4 +20,8 @@ public class Entity {
 	// To animate an entity
 	public int spriteCounter = 0;
 	public int spriteNum = 1;
+
+	// Collision
+	public Rectangle solidArea;
+	public boolean collisionOn = false;
 }

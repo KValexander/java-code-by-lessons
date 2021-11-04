@@ -6,6 +6,7 @@ import java.io.IOException;
 // awt
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 // awt image
 import java.awt.image.BufferedImage;
 // imageio
@@ -30,8 +31,12 @@ public class Player extends Entity {
 		this.panel = panel;
 		this.keyH = keyH;
 
+		// Start position
 		screenX = panel.screenWidth / 2 - panel.tileSize;
 		screenY = panel.screenHeight / 2 - panel.tileSize;
+
+		// Collision
+		solidArea = new Rectangle(0, 0, panel.tileSize * 2, panel.tileSize * 2);
 
 		// Set default values
 		setDefaultValues();
@@ -76,21 +81,27 @@ public class Player extends Entity {
 			keyH.rightPressed == true) {
 
 			// Checking keystrokes
-			if(keyH.upPressed == true) {
+			if(keyH.upPressed == true)
 				direction = "up";
-				worldY -= speed;
-			}
-			else if(keyH.downPressed == true) {
+			else if(keyH.downPressed == true)
 				direction = "down";
-				worldY += speed;
-			}
-			else if(keyH.leftPressed == true) {
+			else if(keyH.leftPressed == true)
 				direction = "left";
-				worldX -= speed;
-			}
-			else if(keyH.rightPressed == true) {
+			else if(keyH.rightPressed == true)
 				direction = "right";
-				worldX += speed;
+
+			// Check tile collision
+			collisionOn = false;
+			panel.cChecker.checkTile(this);
+
+			// Player movement considering collision
+			if(collisionOn == false) {
+				switch(direction) {
+					case "up": worldY -= speed; break;
+					case "down": worldY += speed; break;
+					case "left": worldX -= speed; break;
+					case "right": worldX += speed; break;
+				}
 			}
 
 			// Sprite selection

@@ -20,10 +20,10 @@ public class TileManager {
 	MyPanel panel;
 
 	// Declaring an array of textures
-	Tile[] tile;
+	public Tile[] tile;
 
 	// Declaring an array of map tiles
-	int mapTileNum[][];
+	public int mapTileNum[][];
 
 	// Constructor
 	public TileManager(MyPanel panel) {
@@ -50,9 +50,11 @@ public class TileManager {
 
 			tile[1] = new Tile();
 			tile[1].image = ImageIO.read(getClass().getResourceAsStream("/assets/wall.png"));
+			tile[1].collision = true;
 
 			tile[2] = new Tile();
 			tile[2].image = ImageIO.read(getClass().getResourceAsStream("/assets/void.png"));
+			tile[2].collision = true;
 
 		} catch(IOException e) {
 			e.printStackTrace();
