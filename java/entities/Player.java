@@ -36,7 +36,7 @@ public class Player extends Entity {
 		screenY = panel.screenHeight / 2 - panel.tileSize;
 
 		// Collision
-		solidArea = new Rectangle(0, 0, panel.tileSize * 2, panel.tileSize * 2);
+		solidArea = new Rectangle(panel.tileSize / 4, 0, panel.tileSize - panel.tileSize / 2, panel.tileSize);
 
 		// Set default values
 		setDefaultValues();
@@ -46,8 +46,8 @@ public class Player extends Entity {
 
 	// Default values
 	public void setDefaultValues() {
-		worldX = panel.tileSize * (panel.maxWorldCol / 2) - (panel.tileSize + panel.tileSize / 2);
-		worldY = panel.tileSize * (panel.maxWorldRow / 2) - (panel.tileSize + panel.tileSize / 2);
+		worldX = panel.tileSize * (panel.maxWorldCol / 2) - (panel.tileSize);
+		worldY = panel.tileSize * (panel.maxWorldRow / 2) - (panel.tileSize);
 		speed = 4;
 		direction = "down";
 	}
@@ -57,14 +57,14 @@ public class Player extends Entity {
 		// Catching exceptions
 		try {
 
-			up1 = ImageIO.read(getClass().getResourceAsStream("/assets/up1.png"));
-			up2 = ImageIO.read(getClass().getResourceAsStream("/assets/up2.png"));
-			down1 = ImageIO.read(getClass().getResourceAsStream("/assets/down1.png"));
-			down2 = ImageIO.read(getClass().getResourceAsStream("/assets/down2.png"));
-			left1 = ImageIO.read(getClass().getResourceAsStream("/assets/left1.png"));
-			left2 = ImageIO.read(getClass().getResourceAsStream("/assets/left2.png"));
-			right1 = ImageIO.read(getClass().getResourceAsStream("/assets/right1.png"));
-			right2 = ImageIO.read(getClass().getResourceAsStream("/assets/right2.png"));
+			up1 = ImageIO.read(getClass().getResourceAsStream("/assets/sprites/up1.png"));
+			up2 = ImageIO.read(getClass().getResourceAsStream("/assets/sprites/up2.png"));
+			down1 = ImageIO.read(getClass().getResourceAsStream("/assets/sprites/down1.png"));
+			down2 = ImageIO.read(getClass().getResourceAsStream("/assets/sprites/down2.png"));
+			left1 = ImageIO.read(getClass().getResourceAsStream("/assets/sprites/left1.png"));
+			left2 = ImageIO.read(getClass().getResourceAsStream("/assets/sprites/left2.png"));
+			right1 = ImageIO.read(getClass().getResourceAsStream("/assets/sprites/right1.png"));
+			right2 = ImageIO.read(getClass().getResourceAsStream("/assets/sprites/right2.png"));
 
 		} catch(IOException e) {
 			e.printStackTrace();
@@ -140,7 +140,7 @@ public class Player extends Entity {
 		}
 
 		// Rendering an image
-		g2d.drawImage(image, screenX, screenY, panel.tileSize * 2, panel.tileSize * 2, null);
+		g2d.drawImage(image, screenX, screenY, panel.tileSize, panel.tileSize, null);
 
 	}
 

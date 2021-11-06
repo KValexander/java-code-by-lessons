@@ -20,19 +20,19 @@ public class MyPanel extends JPanel implements Runnable {
 	// Private variables
 	// Tile settings
 	private final int origTileSize = 16;
-	private final int scale = 2;
+	private final int scale = 3;
 
 	// Public variables
 	// Map settings
 	public final int tileSize = origTileSize * scale;
-	public final int maxScreenCol = 20;
-	public final int maxScreenRow = 20;
+	public final int maxScreenCol = 16;
+	public final int maxScreenRow = 16;
 	public final int screenWidth = tileSize * maxScreenCol;
 	public final int screenHeight = tileSize * maxScreenRow;
 
 	// World map settings
-	public final int maxWorldCol = 50;
-	public final int maxWorldRow = 50;
+	public final int maxWorldCol = 70;
+	public final int maxWorldRow = 70;
 	public final int worldWidth = tileSize * maxWorldCol;
 	public final int worldHeight = tileSize * maxWorldRow;
 
