@@ -23,6 +23,8 @@ public class Main {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 
+		// Setup game
+		panel.setupGame();
 		// Start thread
 		panel.startMyThread();
 	}

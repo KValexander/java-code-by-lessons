@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import com.main.entities.Player;
 // main tiles
 import com.main.tiles.TileManager;
+// main objects
+import com.main.objects.SuperObject;
 
 // MyPanel class inherits JPanel class and Runnable interface 
 public class MyPanel extends JPanel implements Runnable {
@@ -39,20 +41,26 @@ public class MyPanel extends JPanel implements Runnable {
 	// FPS
 	public final int FPS = 60;
 
-	// KeyHandler variable
-	private KeyHandler keyH = new KeyHandler();
-
 	// Thread variable
 	private Thread myThread;
 
-	// Player variable
-	public Player player = new Player(this, keyH);
+	// KeyHandler variable
+	private KeyHandler keyH = new KeyHandler();
 
 	// TileManager variable
 	public TileManager tileM = new TileManager(this);
 
-	// Collision variable
+	// Collision checker variable
 	public CollisionChecker cChecker = new CollisionChecker(this);
+
+	// Asset Setter variable
+	public AssetSetter aSetter = new AssetSetter(this);
+
+	// Player variable
+	public Player player = new Player(this, keyH);
+
+	// Array of game objects
+	public SuperObject obj[] = new SuperObject[10];
 
 	// Constructor 
 	public MyPanel() {
@@ -63,6 +71,11 @@ public class MyPanel extends JPanel implements Runnable {
 		// Adding a key handler
 		this.addKeyListener(keyH);
 		this.setFocusable(true);
+	}
+
+	// Setup game
+	public void setupGame() {
+		aSetter.setObject();
 	}
 
 	// Start thread
@@ -146,6 +159,11 @@ public class MyPanel extends JPanel implements Runnable {
 
 		// Rendering tiles
 		tileM.draw(g2d);
+
+		// Rendering objects
+		for(int i = 0; i < obj.length; i++) {
+			if(obj[i] != null) obj[i].draw(g2d, this);
+		}
 		
 		// Rendering the grid
 		// drawGrid(g2d);

@@ -36,7 +36,7 @@ public class Player extends Entity {
 		screenY = panel.screenHeight / 2 - panel.tileSize;
 
 		// Collision
-		solidArea = new Rectangle(panel.tileSize / 4, 0, panel.tileSize - panel.tileSize / 2, panel.tileSize);
+		solidArea = new Rectangle(panel.tileSize / 4, panel.tileSize / 4, panel.tileSize - panel.tileSize / 2, panel.tileSize / 2);
 
 		// Set default values
 		setDefaultValues();
