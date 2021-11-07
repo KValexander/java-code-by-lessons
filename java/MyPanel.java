@@ -133,15 +133,6 @@ public class MyPanel extends JPanel implements Runnable {
 		}
 	}
 
-	// Rendering the grid
-	private void drawGrid(Graphics2D g2d) {
-		g2d.setPaint(new Color(0x888888));
-		for(int i = tileSize; i <= screenHeight; i += tileSize)
-			g2d.drawLine(0, i, screenWidth, i);
-		for(int i = tileSize; i <= screenWidth; i += tileSize)
-			g2d.drawLine(i, 0, i, screenHeight);
-	}
-
 	// Updating game data
 	public void update() {
 
@@ -164,13 +155,9 @@ public class MyPanel extends JPanel implements Runnable {
 		for(int i = 0; i < obj.length; i++) {
 			if(obj[i] != null) obj[i].draw(g2d, this);
 		}
-		
-		// Rendering the grid
-		// drawGrid(g2d);
 
 		// Rendering player data
 		player.draw(g2d);
-
 
 		// Clear
 		g2d.dispose();

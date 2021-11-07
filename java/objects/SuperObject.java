@@ -22,10 +22,10 @@ public class SuperObject {
 		int screenY = worldY - panel.player.worldY + panel.player.screenY;
 
 		// Border
-		if(worldX + panel.tileSize > panel.player.worldX - panel.player.screenX &&
-		   worldX - panel.tileSize < panel.player.worldX + panel.player.screenX &&
-		   worldY + panel.tileSize > panel.player.worldY - panel.player.screenY &&
-		   worldY - panel.tileSize < panel.player.worldY + panel.player.screenY) {
+		if(worldX + panel.tileSize * 2 > panel.player.worldX - panel.player.screenX &&
+		   worldX - panel.tileSize * 2 < panel.player.worldX + panel.player.screenX &&
+		   worldY + panel.tileSize * 2 > panel.player.worldY - panel.player.screenY &&
+		   worldY - panel.tileSize * 2 < panel.player.worldY + panel.player.screenY) {
 			// Rendering object
 			g2d.drawImage(image, screenX, screenY, panel.tileSize, panel.tileSize, null);
 		}
