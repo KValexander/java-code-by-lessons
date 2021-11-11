@@ -37,6 +37,8 @@ public class Player extends Entity {
 
 		// Collision
 		solidArea = new Rectangle(panel.tileSize / 4, panel.tileSize / 4, panel.tileSize - panel.tileSize / 2, panel.tileSize / 2);
+		solidAreaDefaultX = solidArea.x;
+		solidAreaDefaultY = solidArea.y;
 
 		// Set default values
 		setDefaultValues();
@@ -94,6 +96,9 @@ public class Player extends Entity {
 			collisionOn = false;
 			panel.cChecker.checkTile(this);
 
+			int objIndex = panel.cChecker.checkObject(this, true);
+			pickUpObject(objIndex);
+
 			// Player movement considering collision
 			if(collisionOn == false) {
 				switch(direction) {
@@ -113,6 +118,15 @@ public class Player extends Entity {
 			}
 		}
 
+	}
+
+	public void pickUpObject(int i) {
+		if (i != 999) {
+			if (panel.obj[i].collision != true) {
+				panel.obj[0] = null;
+				panel.obj[1] = null;
+			}
+		}
 	}
 
 	// Rendering player data

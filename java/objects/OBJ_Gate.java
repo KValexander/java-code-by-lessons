@@ -16,6 +16,7 @@ public class OBJ_Gate extends SuperObject {
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
+		collision = true;
 	}
 
 }
